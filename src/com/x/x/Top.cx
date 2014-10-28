@@ -1,0 +1,13 @@
+package com.x.x;
+
+network Top {
+	import com.x.x.Sender;
+	import com.x.x.Receiver;
+
+	snd = new Sender();
+	rcv = new Receiver();
+	
+	snd.writes(rcv.din);
+	rcv.writes(snd.dataReady);
+
+}

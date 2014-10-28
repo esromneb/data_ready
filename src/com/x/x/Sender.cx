@@ -1,0 +1,22 @@
+package com.x.x;
+
+task Sender {
+	
+	out sync u8 dout;
+    in bool dataReady;
+	
+	u8 _seq;
+	
+	void setup()
+	{
+		_seq = 0;
+	}
+
+	void loop() {
+		if( dataReady.read() )
+		{
+			dout.write(_seq);
+			_seq++;
+		}
+	}
+}

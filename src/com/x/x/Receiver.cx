@@ -1,0 +1,22 @@
+package com.x.x;
+
+task Receiver {
+    in sync u8 din;
+    out bool dataReady;
+
+    u8 data;
+
+    void setup() {
+        dataReady.write(true);
+    }
+
+    void loop() {
+        data = din.read(); // wait for data
+        
+        dataReady.write(false); // tell sender we are busy computing the data we just got
+
+		idle(2);
+      
+        dataReady.write(true); // ready for more data
+    }
+}
