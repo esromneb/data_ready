@@ -1,6 +1,6 @@
 package com.x.x;
 
-network Top {
+network TopBad {
 	import com.x.x.Sender;
 	import com.x.x.Receiver;
 

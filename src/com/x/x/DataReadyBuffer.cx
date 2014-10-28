@@ -1,0 +1,32 @@
+package com.x.x;
+
+task DataReadyBuffer {
+	properties {
+		type: "combinational",
+		reset: null
+	}
+	
+	// Place this between a sender and receiver
+	
+	in sync u8 din;	          // comes from sender
+	in bool dataReady;        // comes from receiver
+	out sync u8 dout;         // goes to receiver
+	out bool dataReadyInstant; // goes to sender
+	
+	
+	 void loop() {
+    	if( din.available )
+    	{
+    		dout.write(din.read());
+    		dataReadyInstant.write(false);
+    	}
+    	else
+    	{
+    		if( dataReady.read() == true )
+    		{
+    			dataReadyInstant.write(true);
+    		}
+    	}
+    }
+	
+}

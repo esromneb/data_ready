@@ -1,0 +1,15 @@
+package com.x.x;
+
+network TopGood {
+	import com.x.x.Sender;
+	import com.x.x.Receiver;
+	import com.x.x.DataReadyBuffer;
+
+	snd = new Sender();
+	rcv = new Receiver();
+	buffer = new DataReadyBuffer();
+	
+	snd.writes(buffer.din);
+	buffer.writes(rcv.din, snd.dataReady);
+	rcv.writes(buffer.dataReady);
+}
